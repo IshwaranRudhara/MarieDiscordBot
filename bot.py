@@ -4,6 +4,7 @@ from discord.ext import commands
 
 
 """TOKEN = "For Token Contact icode""""
+"""Dont Forget To Download Discord.py Library"""
  
 client = commands.Bot(command_prefix = '/')
 
