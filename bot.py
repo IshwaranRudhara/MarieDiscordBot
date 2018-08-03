@@ -8,16 +8,21 @@ from discord.ext import commands
  
 client = commands.Bot(command_prefix = '/')
 
-VERSION = "0.1"
+__version__ = '1.0'
 
 
 @client.event
 async def on_ready():
+   
     print("----------------------")
     print("Logged In As")
     print("Username: %s"%client.user.name)
     print("ID: %s"%client.user.id)
+    print(f'Discord Version: {discord.__version__}')
+    print(f'Bot Version: {__version__}')
     print("----------------------")
+    print("Bot started successfully.")
+    print("Ctrl+C To Quit")
 
 
 @client.command(name="shutdown")
@@ -28,11 +33,12 @@ async def bot_quit():
   
 @client.command()
 async def ping():
-    '''See if The Bot is Working'''
     pingtime = time.time()
-    pingms = await client.say("Pinging...")
-    ping = time.time() - pingtime
-    await client.edit_message(pingms, ":ping_pong:  time is `%.01f seconds`" % ping)
+    pingms = await client.say("*Pinging...*")
+    ping = (time.time() - pingtime) * 1000
+    await client.edit_message(pingms, "**Pong!** :ping_pong:  The ping time is `%dms`" % ping)
+    print("Pinged bot with a response time of %dms." % ping)
+
 
 @client.command()
 async def echo(*args):
@@ -45,7 +51,7 @@ async def echo(*args):
 @client.command(name="info")
 async def bot_info():
     """Display information about the bot."""
-    await client.say("Marie " +VERSION+" "+"(https://github.com/Mithusmenon/MarieDiscordBot)")
+    await client.say("Marie " +__version__+" "+"(https://github.com/Mithusmenon/MarieDiscordBot)")
 
 @client.command()
 async def invite():
