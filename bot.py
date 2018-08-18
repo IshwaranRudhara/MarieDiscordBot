@@ -59,6 +59,16 @@ async def invite():
     await client.say("Check Your Dm's :wink:")
     await client.whisper(link)
 
+@client.command(pass_context=True)
+async def purge(ctx, amount=100):
+    channel = ctx.message.channel
+    messages = []
+    async for message in client.logs_from(channel, limit=int(amount)):
+        messages.append(message)
+    await client.delete_messages(messages)
+    await client.say("Purge Complete.")
+
+
 
 
 client.run(TOKEN)
