@@ -4,11 +4,12 @@ import time
 from config import TOKEN, link
 from discord.ext import commands
 
-
  
 client = commands.Bot(command_prefix = '/')
 
 __version__ = '1.0'
+
+extensions = ['ping']
 
 
 @client.event
@@ -25,19 +26,20 @@ async def on_ready():
     print("Ctrl+C To Quit")
 
 
+if __name__ == '__main__':
+    for extension in extensions:
+        try:
+            client.load_extension(extension)
+        except Exception as error:
+            print('{} Cannot Be Loaded. [{}]'.format(extension, error))
+
+
+
 @client.command(name="shutdown")
 async def bot_quit():
     await client.say("Shutting down...\n\U0001f44b")
     await client.logout()
 
-  
-@client.command()
-async def ping():
-    pingtime = time.time()
-    pingms = await client.say("*Pinging...*")
-    ping = (time.time() - pingtime) * 1000
-    await client.edit_message(pingms, "**Pong!** :ping_pong:  The ping time is `%dms`" % ping)
-    print("Pinged bot with a response time of %dms." % ping)
 
 
 @client.command()
@@ -67,8 +69,6 @@ async def purge(ctx, amount=100):
         messages.append(message)
     await client.delete_messages(messages)
     await client.say("Purge Complete.")
-
-
 
 
 client.run(TOKEN)
