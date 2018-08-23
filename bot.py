@@ -19,7 +19,6 @@ async def on_ready():
     print("Logged In As")
     print("Username: %s"%client.user.name)
     print("ID: %s"%client.user.id)
-    print(f'Discord Version: {discord.__version__}')
     print(f'Bot Version: {__version__}')
     print("----------------------")
     print("Bot started successfully.")
