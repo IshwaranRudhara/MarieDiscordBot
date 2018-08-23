@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix = '/')
 
 __version__ = '1.0'
 
-extensions = ['ping']
+extensions = ['commands.ping','purge']
 
 
 @client.event
@@ -60,7 +60,7 @@ async def invite():
     '''A Link To Invite This Bot To Server!'''
     await client.say("Check Your Dm's :wink:")
     await client.whisper(link)
-
+"""
 @client.command(pass_context=True)
 async def purge(ctx, amount=100):
     channel = ctx.message.channel
@@ -69,6 +69,6 @@ async def purge(ctx, amount=100):
         messages.append(message)
     await client.delete_messages(messages)
     await client.say("Purge Complete.")
-
+"""
 
 client.run(TOKEN)
