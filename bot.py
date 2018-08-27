@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix = '/')
 
 __version__ = '1.0'
 
-extensions = ['commands.ping','commands.purge','commands.invite']
+extensions = ['commands.ping','commands.purge','commands.invite','commands.echo']
 
 
 @client.event
@@ -38,16 +38,6 @@ if __name__ == '__main__':
 async def bot_quit():
     await client.say("Shutting down...\n\U0001f44b")
     await client.logout()
-
-
-
-@client.command()
-async def echo(*args):
-    output = ''
-    for word in args:
-        output += word
-        output += " "
-    await client.say(output)
 
 @client.command(name="info")
 async def bot_info():
