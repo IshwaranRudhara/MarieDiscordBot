@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix = '/')
 
 __version__ = '1.0'
 
-extensions = ['commands.ping','commands.purge']
+extensions = ['commands.ping','commands.purge','commands.invite']
 
 
 @client.event
@@ -19,7 +19,7 @@ async def on_ready():
     print("Logged In As")
     print("Username: %s"%client.user.name)
     print("ID: %s"%client.user.id)
-    print(f'Bot Version: {__version__}')
+    #print(f'Bot Version: __version__')
     print("----------------------")
     print("Bot started successfully.")
     print("Ctrl+C To Quit")
@@ -53,11 +53,5 @@ async def echo(*args):
 async def bot_info():
     """Display information about the bot."""
     await client.say("Marie " +__version__+" "+"(https://github.com/Mithusmenon/MarieDiscordBot)")
-
-@client.command()
-async def invite():
-    '''A Link To Invite This Bot To Server!'''
-    await client.say("Check Your Dm's :wink:")
-    await client.whisper(link)
 
 client.run(TOKEN)
