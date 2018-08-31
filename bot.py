@@ -4,14 +4,16 @@ import time
 from config import TOKEN, link
 from discord.ext import commands
 
- 
+ #prefix
 client = commands.Bot(command_prefix = '/')
 
+#version
 __version__ = '1.0'
+
 
 extensions = ['commands.ping','commands.purge','commands.invite','commands.echo']
 
-
+#On Ready Event
 @client.event
 async def on_ready():
    
@@ -24,8 +26,8 @@ async def on_ready():
     print("Bot started successfully.")
     print("Ctrl+C To Quit")
 
-
-if __name__ == '__main__':
+#module of loading cogs
+    if __name__ == '__main__':
     for extension in extensions:
         try:
             client.load_extension(extension)
@@ -39,6 +41,7 @@ async def bot_quit():
     await client.say("Shutting down...\n\U0001f44b")
     await client.logout()
 
+#bot info
 @client.command(name="info")
 async def bot_info():
     """Display information about the bot."""
